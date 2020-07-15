@@ -13,15 +13,22 @@ defmodule Vector do
 end
 
   def norm({x1,x2,x3}) do
-    :math.sqrt(:math.pow(x1,2) + :math.pow(x2,2) + :math.pow(x3,2))
+    :math.sqrt(x1 * x1 + x2 * x2 + x3 * x3)
    end
 
   def dot({x1,x2,x3}, {y1,y2,y3}) do
-    {x1 * y1, x2 * y2, x3 * y3}
+    x1 * y1 + x2 * y2 + x3 * y3
+  end
+
+
+  def scale(x, l) do
+    n = norm(x)
+    # this will crash if N == 0!
+    smul(x, l / n)
   end
 
   def normalize(x) do
-    norm(x)/abs(x)
+    scale(x, 1)
   end
 
 
